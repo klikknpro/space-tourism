@@ -26,19 +26,43 @@ font-family: 'Bellefair', serif;
   --clr-white: 0 0% 100%;
   /* rem vs px : for accessibility reasons */
   /* px / 16 = rem */
-  /* font sizes */
-  --fs-900: 9.375rem;
-  --fs-800: 6.25rem;
-  --fs-700: 3.5rem;
-  --fs-600: 2rem;
+  /* font sizes for mobile */
+  --fs-900: 5rem;
+  --fs-800: 3.5rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1rem;
   --fs-500: 1.75rem;
-  --fs-400: 1.125rem;
+  --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
   /* font-families */
   --ff-serif: "Bellefair", serif;
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
+}
+
+@media (min-width: 35em) {
+  :root {
+    /* font-sizes for tablet */
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-400: 1rem;
+  }
+}
+
+@media (min-width: 45em) {
+  :root {
+    /* font-sizes for desktop */
+    --fs-900: 9.375rem;
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    --fs-400: 1.125rem;
+    --fs-300: 1rem;
+    --fs-200: 0.875rem;
+  }
 }
 
 /* Custom Properties end */
@@ -120,6 +144,10 @@ a {
 }
 
 /* CSS Reset end */
+.App {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+}
 
 body {
   background-color: hsl(var(--clr-dark));
@@ -168,6 +196,26 @@ p {
   margin: 0 auto;
   padding: 0 2em;
   max-width: 80rem;
+}
+
+.grid-container {
+  display: grid;
+}
+
+@media (min-width: 45rem) {
+  .grid-container {
+    /* 1fr : take as much space as you need */
+    grid-template-columns: minmax(2rem, 1fr) minmax(0, 30rem) minmax(0, 30rem) minmax(2rem, 1fr);
+    column-gap: var(--column-gap, 2rem);
+  }
+
+  .grid-container > *:first-child {
+    grid-column: 2;
+  }
+
+  .grid-container > *:last-child {
+    grid-column: 3;
+  }
 }
 
 .card-width {
@@ -301,7 +349,7 @@ display: none would take it out of the DOM
   position: relative;
   z-index: 1;
 
-  display: grid;
+  display: inline-grid;
   /* <a> is inline element so padding wont work on it */
   align-items: center;
   justify-items: center;

@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <div className="primary-header flex">
       <div>
-        <img src={logo} alt="space tourism" />
+        <img src={logo} alt="space tourism" className="logo"/>
       </div>
       <nav>
         <ul className="primary-navigation underline-indicators flex">
@@ -26,8 +26,6 @@ const NavBar = () => {
               <li className="uppercase letter-spacing-2 text-white ff-sans-cond fs-300 letter-spacing-2">
               <span>03</span>Technology</li>
             </NavLink>
-
-
         </ul>
       </nav>
     </div>
@@ -37,21 +35,5 @@ const NavBar = () => {
 export default NavBar
 
 /*
-<ul class="primary-navigation underline-indicators flex">
-  <li class="active">
-    <a class="uppercase letter-spacing-2 text-white ff-sans-cond fs-300 letter-spacing-2" href="#"
-      ><span>00</span>Active
-    </a>
-  </li>
-  <li>
-    <a class="uppercase letter-spacing-2 text-white ff-sans-cond fs-300 letter-spacing-2" href="#"
-      ><span>01</span>Hovered
-    </a>
-  </li>
-  <li>
-    <a class="uppercase letter-spacing-2 text-white ff-sans-cond fs-300 letter-spacing-2" href="#"
-      ><span>02</span>Idle
-    </a>
-  </li>
-</ul>
+
 */
