@@ -1,8 +1,418 @@
-body {
-  background-color: grey;
+/* === === === */
+/* FONTS */
+/* === === === */
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* font-family: 'Barlow Condensed', sans-serif; */
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Bellefair&display=swap");
+/*
+font-family: 'Barlow', sans-serif;
+font-family: 'Bellefair', serif;
+*/
+
+/* Fonts end */
+
+/* === === === */
+/* CUSTOM PROPERTIES */
+/* === === === */
+
+/* create global variables inside :root */
+:root {
+  /* colors */
+  --clr-dark: 230 35% 7%;
+  --clr-light: 231 77% 90%;
+  --clr-white: 0 0% 100%;
+  /* rem vs px : for accessibility reasons */
+  /* px / 16 = rem */
+  /* font sizes */
+  --fs-900: 9.375rem;
+  --fs-800: 6.25rem;
+  --fs-700: 3.5rem;
+  --fs-600: 2rem;
+  --fs-500: 1.75rem;
+  --fs-400: 1.125rem;
+  --fs-300: 1rem;
+  --fs-200: 0.875rem;
+  /* font-families */
+  --ff-serif: "Bellefair", serif;
+  --ff-sans-cond: "Barlow Condensed", sans-serif;
+  --ff-sans-normal: "Barlow", sans-serif;
 }
 
-h1 {
-  font-size: 36px;
-  color: azure;
+/* Custom Properties end */
+
+/* === === === */
+/* CSS RESET */
+/* === === === */
+
+/* box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+/* set up the body */
+body {
+  /* browser's 1.4 deafult is too tight */
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* work with images easier */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  border: none;
+}
+
+/* list styles */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* make forms easier */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+button,
+a {
+  cursor: pointer;
+  color: inherit;
+}
+
+/* remove animations for whom they turn it off #accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* CSS Reset end */
+
+body {
+  background-color: hsl(var(--clr-dark));
+  color: hsl(var(--clr-white));
+  font-family: var(--ff-sans-normal);
+  font-size: var(--fs-400);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+/* === === === */
+/* UTILITY CLASSES */
+/* === === === */
+
+/*
+• makes things modular
+• does 1 thing only
+• html can be more semantic
+*/
+
+.flex {
+  display: flex;
+  /* Custom Property with a given default value */
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  /* Custom Property with a given default value */
+  gap: var(--gap, 1rem);
+}
+
+.flow > *:not(:first-child) {
+  margin-top: var(--flow-space, 1rem);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 2em;
+  max-width: 80rem;
+}
+
+.card-width {
+  flex-grow: 1;
+}
+
+/*
+for screen reader technology
+visually hide content from visually impaired users, but keep the content in the page (not in the flow)
+display: none would take it out of the DOM
+*/
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+
+/* Colors (of Utility Classes) */
+
+.bg-dark {
+  background-color: hsl(var(--clr-dark));
+}
+.bg-accent {
+  background-color: hsl(var(--clr-light));
+}
+.bg-white {
+  background-color: hsl(var(--clr-white));
+}
+
+.example-component {
+  background-color: hsl(var(--clr-light) / 0.2);
+}
+
+.text-dark {
+  color: hsl(var(--clr-dark));
+}
+.text-accent {
+  color: hsl(var(--clr-light));
+}
+.text-white {
+  color: hsl(var(--clr-white));
+}
+
+/* Typography (of Utility Classes) */
+
+.ff-serif {
+  font-family: var(--ff-serif);
+}
+.ff-sans-cond {
+  font-family: var(--ff-sans-cond);
+}
+.ff-sans-normal {
+  font-family: var(--ff-sans-normal);
+}
+
+.letter-spacing-1 {
+  letter-spacing: 4.75px;
+}
+.letter-spacing-2 {
+  letter-spacing: 2.7px;
+}
+.letter-spacing-3 {
+  letter-spacing: 2.35px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.fs-900 {
+  font-size: var(--fs-900);
+}
+.fs-800 {
+  font-size: var(--fs-800);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
+.fs-600 {
+  font-size: var(--fs-600);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-300 {
+  font-size: var(--fs-300);
+}
+.fs-200 {
+  font-size: var(--fs-200);
+}
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+  line-height: 1.1;
+}
+
+/* this is a "Utility Class Plus", special use-case */
+
+.numbered-title {
+  font-family: var(--ff-sans-cond);
+  font-size: var(--fs-500);
+  letter-spacing: 4.75px;
+  text-transform: uppercase;
+  color: hsl(var(--clr-white));
+}
+
+.numbered-title span {
+  margin-right: 0.5em;
+  font-weight: 700;
+  color: hsl(var(--clr-light) / 0.25);
+}
+
+/* Utility Classes end */
+
+/* === === === */
+/* COMPONENTS */
+/* === === === */
+
+.large-button {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  /* <a> is inline element so padding wont work on it */
+  align-items: center;
+  justify-items: center;
+  padding: 0 2em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  text-decoration: none;
+}
+
+.large-button::after {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+
+  background: hsl(var(--clr-white) / 0.15);
+  border-radius: 50%;
+  opacity: 0;
+
+  transition: opacity 500ms linear, transform 750ms ease-in-out;
+}
+
+.large-button:hover::after,
+.large-button:focus::after {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.primary-navigation {
+  padding: 0;
+  margin: 0;
+  /* itt csak modositom a .flex classbol orokolt --gap valtozot */
+  --gap: 8rem;
+  --underline-gap: 2rem;
+
+  list-style: none;
+}
+
+.primary-navigation a {
+  text-decoration: none;
+}
+
+.primary-navigation a span {
+  margin-right: 0.5em;
+  font-weight: 700;
+}
+
+/* selecting all direct child elements */
+.underline-indicators > * {
+  padding: var(--underline-gap, 1rem) 0;
+  border: 0;
+  border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+  cursor: pointer;
+}
+
+.underline-indicators > *:hover,
+.underline-indicators > *:focus {
+  border-color: hsl(var(--clr-white) / 0.5);
+}
+
+.underline-indicators > .active,
+.underline-indicators > [aria-selected="true"] {
+  color: hsl(var(--clr-white));
+  border-color: hsl(var(--clr-white));
+}
+
+.tab-list {
+  --gap: 2rem;
+}
+
+.dot-indicators > * {
+  width: 15px;
+  height: 15px;
+
+  border-radius: 50%;
+  border: 0;
+  background-color: hsl(var(--clr-white) / 0.17);
+  cursor: pointer;
+}
+
+.dot-indicators > *:hover,
+.dot-indicators > *:focus {
+  background-color: hsl(var(--clr-white) / 0.5);
+}
+
+.dot-indicators > [aria-selected="true"] {
+  background-color: hsl(var(--clr-white) / 1);
+}
+
+.numbered-indicators > * {
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+  border: 1px solid hsl(var(--clr-light) / 0.25);
+  background-color: hsl(var(--clr-white) / 0);
+  cursor: pointer;
+
+  color: var(--clr-white);
+  font-family: var(--ff-serif);
+  font-size: var(--fs-600);
+}
+
+.numbered-indicators > *:hover,
+.numbered-indicators > *:focus {
+  border: 2px solid hsl(var(--clr-light) / 1);
+}
+
+.numbered-indicators > [aria-selected="true"] {
+  background-color: hsl(var(--clr-white) / 1);
+  color: hsl(var(--clr-dark));
+  border: 0;
 }
