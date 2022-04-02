@@ -44,7 +44,6 @@ font-family: 'Bellefair', serif;
 @media (min-width: 35em) {
   :root {
     /* font-sizes for tablet */
-    --fs-900: 9.375rem;
     --fs-800: 5rem;
     --fs-700: 2.5rem;
     --fs-600: 1.5rem;
@@ -149,10 +148,8 @@ body {
 }
 .App {
   min-height: 100vh;
-  /*
   display: grid;
   grid-template-rows: min-content 1fr;
-  */
 }
 h1,
 h2,
@@ -202,19 +199,51 @@ p {
 
 .grid-container {
   display: grid;
-  column-gap: var(--container-gap, 2rem);
-  grid-template-columns: minmax(2rem, 1fr) minmax(0, 40rem) minmax(0, 40rem) minmax(2rem, 1fr);
+  /* justify-items: center; NOT working right*/
+  text-align: center;
+  /* shorthand for align-items + justify-items */
+  place-items: center;
+  padding-inline: 1rem;
+
+  /* border: 5px solid limegreen; */
 }
 
+.grid-container * {
+  max-width: 50ch;
+}
+
+@media (min-width: 45em) {
+  .grid-container {
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(1rem, 1fr) minmax(0, 40rem) minmax(0, 40rem) minmax(1rem, 1fr);
+
+    text-align: left;
+  }
+
+  .grid-container > *:first-child {
+    grid-column: 2;
+    /* outline: 1px solid red; */
+  }
+
+  .grid-container > *:last-child {
+    grid-column: 3;
+    /* outline: 1px solid yellow; */
+  }
+
+  .grid-container--home {
+    padding-bottom: 6rem;
+    align-items: end;
+  }
+}
+
+/* just for visualization aid
 .grid-container > *:first-child {
-  grid-column: 2;
   outline: 1px solid red;
 }
-
 .grid-container > *:last-child {
-  grid-column: 3;
   outline: 1px solid yellow;
 }
+just for visualization aid */
 
 .card-width {
   flex-grow: 1;
