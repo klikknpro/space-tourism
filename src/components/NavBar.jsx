@@ -8,7 +8,7 @@ const NavBar = () => {
       <div>
         <img src={logo} alt="space tourism" className="logo"/>
       </div>
-      <nav>
+      {/* <nav>
         <ul className="primary-navigation underline-indicators flex">
             <NavLink to="/">
               <li className="uppercase letter-spacing-2 text-white ff-sans-cond fs-300 letter-spacing-2">
@@ -27,7 +27,7 @@ const NavBar = () => {
               <span>03</span>Technology</li>
             </NavLink>
         </ul>
-      </nav>
+      </nav> */}
     </div>
   )
 }

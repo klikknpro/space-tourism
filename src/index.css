@@ -92,7 +92,7 @@ picture {
 body {
   /* browser's 1.4 default is too tight */
   line-height: 1.5;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 /* work with images easier */
@@ -146,11 +146,13 @@ body {
   font-family: var(--ff-sans-normal);
   font-size: var(--fs-400);
 }
+
 .App {
   min-height: 100vh;
   display: grid;
   grid-template-rows: min-content 1fr;
 }
+
 h1,
 h2,
 h3,
@@ -495,4 +497,32 @@ display: none would take it out of the DOM
   background-color: hsl(var(--clr-white) / 1);
   color: hsl(var(--clr-dark));
   border: 0;
+}
+
+/* === === === */
+/* PAGE SPECIFIC BACKGROUNDS*/
+/* === === === */
+
+/* Home */
+
+body {
+  background-size: cover;
+  background-position: bottom center;
+}
+
+.App {
+  background-image: url(./assets/home/background-home-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .App {
+    background-position: center center;
+    background-image: url(./assets/home/background-home-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .App {
+    background-image: url(./assets/home/background-home-desktop.jpg);
+  }
 }
